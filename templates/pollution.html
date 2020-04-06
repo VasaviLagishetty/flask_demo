@@ -2,7 +2,10 @@
 <head>
   <title>Pollution Data</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="cache-control" content="max-age=0">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="-1">
+  <meta http-equiv="pragma" content="no-cache">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link href='https://fonts.googleapis.com/css?family=Aladin' rel='stylesheet'>
   <style>
@@ -10,30 +13,30 @@
       margin: 0;
     }
     #p1 {
-	  margin-top: -50px;
+	    margin-top: -50px;
       font-size : 30px;
       font-family: "Lato", sans-serif;
       color: black;
     }
     #heading {
-	font-family: "Lato", sans-serif;
-       font-family: 'Aladin';font-size: 82px;
+	    font-family: "Lato", sans-serif;
+      font-family: 'Aladin';font-size: 82px;
       color: black;
     }
     #p3 {
-    margin-left : 80px;
-    font-size : 27px;
-    font-family: "Lato", sans-serif;
-    color: black;
+      margin-left : 80px;
+      font-size : 27px;
+      font-family: "Lato", sans-serif;
+      color: black;
     }
     img{
-    margin-left : 100px;
-    margin-top : 100px;
-    border : 1.5px solid white;
-    float: left;
-    height : 640px;
-    width : 550px;
-    padding-right : 140px;
+      margin-left : 100px;
+      margin-top : 100px;
+      border : 1.5px solid white;
+      float: left;
+      height : 640px;
+      width : 550px;
+      padding-right : 140px;
     }
     .b1 {
       background-color: white;
@@ -44,43 +47,33 @@
       text-decoration: none;
       display: inline-block;
       margin: 4px 2px;
-      margin-left :105px;
+      margin-left :70px;
       cursor: pointer;
       font-size: 20px;
     }
-
     .b1:hover {
       background-color:	black;
       color: white;
     }
-	#dir {
-	border: 2px solid black;
-	width : 250px;
-	height : 50px;
-	margin-left : 30px;
-	margin-right : 20px;
-	border-radius: 10px;
-  	box-sizing: border-box;
-  	padding: 12px 14px;
-	}
+    #dir {
+      border: 2px solid black;
+      width : 250px;
+      height : 50px;
+      margin-left : 110px;
+      margin-right : 20px;
+      border-radius: 10px;
+      box-sizing: border-box;
+      padding: 12px 14px;
+    }
   </style>
 </head>
-<body>
-	<img src="./static/pic.jpg" id="be" /><br><br><br><br><br>
+<body id = "body">
+	<img src="./static/pic.jpg" /><br><br><br><br><br><br>
 	<h1 id="heading">Pollution Monitoring System</h1>
 	<pre><p id="p1">      	  			                 (16CC-B1)</p> </pre> 
-	<form action="/page" method="post">
+	<form action="/page"  method="post">
 		<input type="text" id="dir" name = "number" placeholder="No of previous results...!!!!">
-        <button type="submit" class="b1">Data</button>
-    </form><br>
-<table border="1">
-  {% for i in temp %}
-            <tr>
-               <td> {{ i["created_at"] }} </td>
-               <td> {{ i["field1"] }} </td>
-            </tr>
-         {% endfor %}
-</table>
-<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1019362/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+    <button type="submit" class="b1" >Data</button>
+  </form><br><br>
 </body>
 </html>

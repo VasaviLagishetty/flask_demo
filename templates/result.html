@@ -1,0 +1,72 @@
+<html>
+<head>
+  <title>Pollution1</title>
+  <link href='https://fonts.googleapis.com/css?family=Aladin' rel='stylesheet'>
+  <style>
+  .b1 {
+    background-color: white;
+    border : 2px solid black;
+    border-radius : 10px;
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    margin-left :70px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.b1:hover {
+  background-color:	black;
+  color: white;
+}
+#t2 {
+  border-collapse: collapse;
+  text-align: center;
+}
+#t1{
+  margin-top: 50px;
+  text-align: center;
+}
+#t2, #th {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body><center>
+<table id = "t1" width = "1500" height = "600" >
+  <tr style="font-size: 45; vertical-align: bottom;font-family: 'Aladin';">
+    <th>Pollution Readings</th>
+    <th>Visualization</th>
+  </tr>
+  <tr>
+    <td style="vertical-align: middle;"><table id = "t2" width = "700" height = "430">
+        <tr style="font-size: 25;">
+          <th id = "th">TimeZone</th>
+          <th id = "th">Pollution</th>
+          <th id = "th">Precautions</th>
+        </tr>
+        {% for i,j in temp %}
+        <tr>
+          <td id = "th"> {{ i }} </td>
+          <td id = "th"> {{ j }} </td>
+          {% if j <= 1000 %}
+          <td id = "th">Enjoy Living...., No issues</td>
+          {% elif j <= 1250 %}
+          <td id = "th">Safe to live, but control need to be taken</td>
+          {% elif j <= 1500 %}
+          <td id = "th">ALERT...!!!! Precautions mandatory</td>
+          {% elif j<=1750 %}
+          <td id = "th">Health issues, negligence leads to loss</td>
+          {% else %}
+          <td id = "th">Red alert..! Time for increasing greenary</td>
+          {%endif%}
+        </tr>
+        {% endfor %}
+    </table>
+  </td>
+  <td style="vertical-align: top;">{{image}}</td>
+</tr></table><br>
+<a href="http://127.0.0.1:1234/"><button  class="b1" >Back</button></a>
+</center></body>
+</html>
