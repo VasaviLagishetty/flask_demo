@@ -2,9 +2,8 @@ from flask import Flask, render_template, request,Markup
 import requests
 import numpy as np
 import os
-import base64
-from io import BytesIO
-import matplotlib.pylab as plt
+import plotly as py
+import plotly.graph_objs as go
 
 app = Flask(__name__)
 
@@ -13,7 +12,9 @@ def fetch():
     link = "https://api.thingspeak.com/channels/1019362/feeds.json?api_key=VURU7P85PQ06OZAX&results="
     data_info = requests.get(link)
     data = data_info.json()
+    print("Json data from URL")
     print(data)
+    print("no_of_results",no_of_results)
     no_of_results = int(no_of_results)
     return data,no_of_results
 
@@ -35,17 +36,23 @@ def fetch_data():
     date = [x["created_at"] for x in info["feeds"][total_fetch:]]
     value = [int(x["field1"]) if int(x["field1"])>=100 else int(x["field1"])*100 if int(x["field1"])<10 else int(x["field1"])*10 for x in info["feeds"][total_fetch:]]
     temp = zip(date,value)
-    date = [x[:10] for x in date]
-    d = {date[i]:value[i] for i in range(len(date))}
-    d = sorted(d.items())
-    x,y = zip(*d)
-    plt.plot(x,y, color='green', linestyle='solid', linewidth = 2)
-    plt.xlabel('Date', fontsize=15)
-    plt.ylabel('Pollution', fontsize=15)
-    plt.yticks(np.arange(100, 2000, 150))
-    plt.savefig('./static/img.png')
-    html = "<img src='./static/img.png'>"
-    return render_template('result.html',temp = temp,image = Markup(html))
+    print("date,time : ",date)
+    print("Pollution value : ",value)
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=date,y=value))
+    fig.layout["font"] = dict(color="#000000",size=16)
+    fig.layout["legend"] = dict(font=dict(color="black", size=12), orientation="h", bgcolor="#b0c4de")
+    fig.layout["paper_bgcolor"] = "#f9f9f9"
+    fig.layout['plot_bgcolor'] = "#f9f9f9"
+    # fig.layout['width']=500  
+    fig.layout.margin={'t':20,'l':20,'b':20,'r':20}  
+    fig.layout.title=fig.layout.title={
+        'text': "Visualization",
+        'y':0.98,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'}
+    return render_template('result.html',temp = temp,image = fig.show())
 
 if __name__ == '__main__':
    app.run(port = 1234,debug = True)
