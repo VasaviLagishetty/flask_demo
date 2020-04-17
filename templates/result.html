@@ -20,14 +20,8 @@
   background-color:	black;
   color: white;
 }
-table {
-  border-collapse: collapse;
-  text-align: center;
-}
 
-table, th,td {
-  border: 1px solid black;
-}
+
 h1{
   font-size: 45;
   font-family: 'Aladin';
@@ -37,40 +31,7 @@ h1{
 </head>
 <body><center>
 
-    <h1>Pollution Readings</h1><br>
-    <table id = "t2" width = "700" height = "470">
-        <tr style="font-size: 25;">
-          <th>TimeZone</th>
-          <th>Pollution</th>
-          <th>Precautions</th>
-        </tr>
-        {% for i,j in temp %}
-        <tr>
-          
-          {% if j <= 1000 %}
-          <td bgcolor="#00e800"> {{ i }} </td>
-          <td bgcolor="#00e800"> {{ j }} </td>
-          <td bgcolor="#00e800">Enjoy Living...., No issues</td>
-          {% elif j <= 1300 %}
-          <td bgcolor="#006600"> {{ i }} </td>
-          <td bgcolor="#006600"> {{ j }} </td>
-          <td bgcolor="#006600">Safe to live, but control need to be taken</td>
-          {% elif j <= 1550 %}
-          <td bgcolor="#ff0000"> {{ i }} </td>
-          <td bgcolor="#ff0000"> {{ j }} </td>
-          <td bgcolor="#ff0000">ALERT...!!!! Precautions mandatory</td>
-          {% elif j<=1750 %}
-          <td bgcolor="#da0000"> {{ i }} </td>
-          <td bgcolor="#da0000"> {{ j }} </td>
-          <td bgcolor="#da0000">Health issues, negligence leads to loss</td>
-          {% else %}
-          <td bgcolor="#ad0000"> {{ i }} </td>
-          <td bgcolor="#ad0000"> {{ j }} </td>
-          <td bgcolor="#ad0000">Red alert..! Time for increasing greenary</td>
-          {%endif%}
-        </tr>
-        {% endfor %}
-    </table>
+    
   <br><br>
 <a href="http://127.0.0.1:1234/"><button  class="b1" >Back</button></a>
 </center></body>

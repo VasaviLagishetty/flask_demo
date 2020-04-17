@@ -14,11 +14,13 @@
     }
     #p1 {
 	    margin-top: -50px;
+      margin-left : 890px;
       font-size : 30px;
       font-family: "Lato", sans-serif;
       color: black;
     }
     #heading {
+      margin-left : 890px;
 	    font-family: "Lato", sans-serif;
       font-family: 'Aladin';font-size: 82px;
       color: black;
@@ -30,8 +32,8 @@
       color: black;
     }
     img{
-      margin-left : 200px;
-      margin-top : 100px;
+      margin-left : 120px;
+      margin-top : 120px;
       border : 1.5px solid white;
       float: left;
       height : 640px;
@@ -59,21 +61,100 @@
       border: 2px solid black;
       width : 250px;
       height : 50px;
-      margin-left : 110px;
+      margin-left : 210px;
       margin-right : 20px;
       border-radius: 10px;
       box-sizing: border-box;
       padding: 12px 14px;
     }
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+table,th,td{
+  text-align: center;
+  border: 1px solid #696969	;
+}
+
+.fixed_header{
+    width: 930px;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.fixed_header tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 295px;
+}
+
+.fixed_header thead tr {
+   display: block;
+}
+
+.fixed_header thead {
+  background: #696969	;
+  color: white;
+}
+
+.fixed_header th{
+  padding: 15px;
+  text-align: center;
+  width: 305px;
+}
+.fixed_header td {
+  padding: 15px;
+  text-align: center;
+  width: 320px;
+}
   </style>
 </head>
 <body id = "body">
-	<img src="./static/pic.jpg" /><br><br><br><br><br><br><br><br><br><br><br>
+	<img src="./static/pic.jpg" /><br><br><br>
 	<h1 id="heading">Pollution Monitoring System</h1>
 	<pre><p id="p1">      	  			                 (16CC-B1)</p> </pre> 
 	<form action="/page"  method="post">
 		<input type="text" id="dir" name = "number" placeholder="No of previous results...!!!!">
     <button type="submit" class="b1" >Data</button>
-  </form><br><br>
+  </form><br><br><br>
+    <table class="fixed_header">
+      <thead>
+        <tr style="font-size: 25;">
+          <th>TimeZone</th>
+          <th>Pollution</th>
+          <th>Precautions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i,j in temp %}
+        <tr>
+          {% if j <= 1000 %}
+          <td> {{ i }} </td>
+          <td> {{ j }} </td>
+          <td>Enjoy Living...., No issues</td>
+          {% elif j <= 1300 %}
+          <td> {{ i }} </td>
+          <td> {{ j }} </td>
+          <td>Safe to live, but control need to be taken</td>
+          {% elif j <= 1550 %}
+          <td> {{ i }} </td>
+          <td> {{ j }} </td>
+          <td>ALERT...!!!! Precautions mandatory</td>
+          {% elif j<=1750 %}
+          <td> {{ i }} </td>
+          <td> {{ j }} </td>
+          <td>Health issues, negligence leads to loss</td>
+          {% else %}
+          <td> {{ i }} </td>
+          <td> {{ j }} </td>
+          <td>Red alert..! Time for increasing greenary</td>
+          {%endif%}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+<br><br><br><br><br><br><br>
+<b><center>
+<p1>Note : Default records fetched from cloud storage are 6 for more you can enter in the input text box above..!!!</p1>
+</center></b>
 </body>
 </html>
