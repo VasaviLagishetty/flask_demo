@@ -107,9 +107,20 @@ table,th,td{
   width: 320px;
 }
   </style>
+  <script language="javascript">
+    function change() {
+		var image = document.getElementById('pic');
+            if (image.src.match("earth1")) {
+                image.src = "static/earth2.jpg";
+            }
+            else {
+                image.src = "static/earth1.jpg";
+            }
+    }
+    </script>
 </head>
 <body id = "body">
-	<img src="./static/pic.jpg" /><br><br><br>
+  <img src="./static/earth1.jpg" id = "pic" onclick="change()"/><br><br><br>
 	<h1 id="heading">Pollution Monitoring System</h1>
 	<pre><p id="p1">      	  			                 (16CC-B1)</p> </pre> 
 	<form action="/page"  method="post">
@@ -122,6 +133,7 @@ table,th,td{
           <th>TimeZone</th>
           <th>Pollution</th>
           <th>Precautions</th>
+          <th>Warning_Level</th>
         </tr>
       </thead>
       <tbody>
@@ -130,23 +142,23 @@ table,th,td{
           {% if j <= 1000 %}
           <td> {{ i }} </td>
           <td> {{ j }} </td>
-          <td>Enjoy Living...., No issues</td>
+          <td style="color:green">Enjoy Living...., No issues</td>
           {% elif j <= 1300 %}
           <td> {{ i }} </td>
           <td> {{ j }} </td>
-          <td>Safe to live, but control need to be taken</td>
+          <td style="color:rgb(96, 196, 96)">Safe to live, but control need to be taken</td>
           {% elif j <= 1550 %}
           <td> {{ i }} </td>
           <td> {{ j }} </td>
-          <td>ALERT...!!!! Precautions mandatory</td>
+          <td style="color:greenyellow">ALERT...!!!! Precautions mandatory</td>
           {% elif j<=1750 %}
           <td> {{ i }} </td>
           <td> {{ j }} </td>
-          <td>Health issues, negligence leads to loss</td>
+          <td style="color:rgb(216, 86, 86)">Health issues, negligence leads to loss</td>
           {% else %}
           <td> {{ i }} </td>
           <td> {{ j }} </td>
-          <td>Red alert..! Time for increasing greenary</td>
+          <td style="color:red">Red alert..! Time for increasing greenary</td>
           {%endif%}
         </tr>
         {% endfor %}
