@@ -18,12 +18,6 @@ def fetch():
     no_of_results = int(no_of_results)
     return data,no_of_results
 
-def fetch1():
-    link = "https://api.thingspeak.com/channels/1019362/feeds.json?api_key=VURU7P85PQ06OZAX&results="
-    data_info = requests.get(link)
-    data = data_info.json()
-    return data,6
-
 def temp_results():
     info,no_of_results = fetch()
     total_values = len(info["feeds"])
@@ -53,21 +47,9 @@ def temp_results():
     fig.show()
     return temp
 
-def temp_results1():
-    info,no_of_results = fetch1()
-    total_values = len(info["feeds"])
-    if total_values <= no_of_results:
-        total_fetch = 0
-    else:
-        total_fetch = total_values-no_of_results
-    date = [x["created_at"] for x in info["feeds"][total_fetch:]]
-    value = [int(x["field1"]) if int(x["field1"])>=100 else int(x["field1"])*100 if int(x["field1"])<10 else int(x["field1"])*10 for x in info["feeds"][total_fetch:]]
-    temp = zip(date,value)
-    return temp
-
 @app.route('/')
 def home():
-    temp = temp_results1()
+    temp = temp_results()
     return render_template('pollution.html',temp = temp)
 
 @app.route('/page',methods = ['POST'])
