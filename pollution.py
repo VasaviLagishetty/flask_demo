@@ -6,7 +6,10 @@ import plotly.graph_objs as go
 app = Flask(__name__)
 
 def fetch():
-    no_of_results = request.form["number"]
+    try:
+        no_of_results = request.form["number"]
+    except:
+        no_of_results = 6
     link = "https://api.thingspeak.com/channels/1019362/feeds.json?api_key=VURU7P85PQ06OZAX&results="
     data_info = requests.get(link)
     data = data_info.json()
@@ -18,7 +21,7 @@ def fetch():
     no_of_results = int(no_of_results)
     return data,no_of_results
 
-def temp_results():
+def results():
     info,no_of_results = fetch()
     total_values = len(info["feeds"])
     if total_values <= no_of_results:
@@ -49,12 +52,12 @@ def temp_results():
 
 @app.route('/')
 def home():
-    temp = temp_results()
+    temp = results()
     return render_template('pollution.html',temp = temp)
 
 @app.route('/page',methods = ['POST'])
 def fetch_data():
-    temp = temp_results()
+    temp = results()
     return render_template('pollution.html',temp = temp)
 
 if __name__ == '__main__':
