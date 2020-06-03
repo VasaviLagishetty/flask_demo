@@ -133,7 +133,6 @@ table,th,td{
           <th>TimeZone</th>
           <th>Pollution</th>
           <th>Precautions</th>
-          <th>Warning_Level</th>
         </tr>
       </thead>
       <tbody>
@@ -142,23 +141,23 @@ table,th,td{
           {% if j <= 1000 %}
           <td> {{ i }} </td>
           <td> {{ j }} </td>
-          <td style="color:green">Enjoy Living...., No issues</td>
+          <td>Enjoy Living...., No issues</td>
           {% elif j <= 1300 %}
           <td> {{ i }} </td>
           <td> {{ j }} </td>
-          <td style="color:rgb(96, 196, 96)">Safe to live, but control need to be taken</td>
+          <td>Safe to live, but control need to be taken</td>
           {% elif j <= 1550 %}
           <td> {{ i }} </td>
           <td> {{ j }} </td>
-          <td style="color:greenyellow">ALERT...!!!! Precautions mandatory</td>
+          <td>ALERT...!!!! Precautions mandatory</td>
           {% elif j<=1750 %}
           <td> {{ i }} </td>
           <td> {{ j }} </td>
-          <td style="color:rgb(216, 86, 86)">Health issues, negligence leads to loss</td>
+          <td>Health issues, negligence leads to loss</td>
           {% else %}
           <td> {{ i }} </td>
           <td> {{ j }} </td>
-          <td style="color:red">Red alert..! Time for increasing greenary</td>
+          <td>Red alert..! Time for increasing greenary</td>
           {%endif%}
         </tr>
         {% endfor %}
