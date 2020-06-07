@@ -26,8 +26,8 @@ def results(with_graph = 1):
         total_fetch = 0
     else:
         total_fetch = total_values-no_of_results
-    date = [x["created_at"] for x in info["feeds"][total_fetch:] if int(x["field1"]) > 1000]
-    value = [int(x["field1"]) for x in info["feeds"][total_fetch:] if int(x["field1"]) > 1000]
+    date = [x["created_at"] for x in info["feeds"][total_fetch:]]
+    value = [int(x["field1"]) for x in info["feeds"][total_fetch:]]
     temp = zip(date,value)
     print("date,time : ",date)
     print("Pollution value : ",value)
